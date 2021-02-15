@@ -1,0 +1,19 @@
+
+import pandas as pd
+
+df = pd.read_excel('C:/Users/ASUS/Documents/Python excel/sales.xlsx')
+
+ss=df.sort_values(by='amount',ascending=False)
+print("Top 10 products")
+print(ss[:10])
+print("***********************")
+print("Bottom 10 products")
+
+ss=df.sort_values(by='amount')
+print(ss[:10])
+
+print("***********************")
+print("Top product in each state")
+st=df.groupby("state")
+sp=st["amount","product_id"].max()
+print(sp)
