@@ -1,19 +1,24 @@
+#Created by Cilla Grace on 13/02/2021
 
 import pandas as pd
-
+#Creating DataFrame
 df = pd.read_excel('C:/Users/ASUS/Documents/Python excel/sales.xlsx')
 
-ss=df.sort_values(by='amount',ascending=False)
+#Sorting the values inorder to get the top 10 products
+top=df.sort_values(by='quantity',ascending=False)
 print("Top 10 products")
-print(ss[:10])
+print(top[:10])
 print("***********************")
+
+#Sorting the values inorder to get the bottom 10 products
 print("Bottom 10 products")
-
-ss=df.sort_values(by='amount')
-print(ss[:10])
+low=df.sort_values(by='quantity')
+print(low[:10])
 
 print("***********************")
+#Grouping the products and finding the highest product in each state
 print("Top product in each state")
 st=df.groupby("state")
-sp=st["amount","product_id"].max()
-print(sp)
+max_st=st["quantity","product_id","product_name"].max()
+print(max_st)
+
