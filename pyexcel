@@ -1,46 +1,39 @@
-#Created by Cilla Grace on 21/02/2021
+#Created by Cilla Grace on 14/02/2021
 
 #importing modules
 import logging
 import pandas as pd
 
-#Creating DataFrame
-df = pd.read_excel('C:/Users/ASUS/Documents/Python excel/sales.xlsx')
-
-#Create and configure logger
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s %(message)s')
-
-# Creating an object
-logger = logging.getLogger()
-
-# Setting the threshold of logger to DEBUG
-logger.setLevel(logging.DEBUG)
+def main():
+  #Creating DataFrame
+  global df
+  df = pd.read_excel('C:/Users/ASUS/Documents/Python excel/sales.xlsx')
+  #Create and configure logging
+  logging.basicConfig(level=logging.INFO,format='%(asctime)s %(message)s')
+  top()
+  print("***********************")
+  low()
+  print("***********************")
+  state()
 
 def top():
   #Sorting the values inorder to get the top 10 products
   top=df.sort_values(by='quantity',ascending=False)
-  logger.info("Top 10 products")
+  logging.info("Top 10 products")
   print(top[:10])
-  print("***********************")
 
 def low():
   #Sorting the values inorder to get the bottom 10 products
-  logger.info("Bottom 10 products")
   low=df.sort_values(by='quantity')
+  logging.info("Bottom 10 products")
   print(low[:10])
-  print("***********************")
 
 def state():
   #Grouping the products and finding the highest product in each state
-  logger.info("Top product in each state")
   st=df.groupby("state")
   max_st=st["quantity","product_id","product_name"].max()
+  logging.info("Top product in each state")
   print(max_st)
 
-top()
-low()
-state()
-
-
+main()
 
